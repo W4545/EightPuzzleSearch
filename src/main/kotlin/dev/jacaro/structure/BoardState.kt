@@ -9,7 +9,6 @@ data class BoardState(val array: Array<Int>) {
     get() = array.contentEquals(successArray)
 
 
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is BoardState) return false
