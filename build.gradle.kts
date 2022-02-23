@@ -24,6 +24,12 @@ tasks.withType<KotlinCompile> {
     kotlinOptions.freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
 }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
 tasks.withType<JavaExec> {
     jvmArgs = listOf("-Xms1g", "-Xmx48g")
 }
