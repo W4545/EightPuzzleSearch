@@ -14,6 +14,10 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    implementation("org.controlsfx:controlsfx:11.1.1")
+}
+
 javafx {
     modules("javafx.controls", "javafx.fxml")
     version = "17.0.2"
