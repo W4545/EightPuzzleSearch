@@ -2,6 +2,7 @@ package dev.jacaro.school.eightpuzzlesearch.entry
 
 import dev.jacaro.school.eightpuzzlesearch.algorithms.BreadthFirstSearch
 import dev.jacaro.school.eightpuzzlesearch.algorithms.DepthFirstSearch
+import dev.jacaro.school.eightpuzzlesearch.algorithms.UniformCostSearch
 import dev.jacaro.school.eightpuzzlesearch.structure.BoardState
 import dev.jacaro.school.eightpuzzlesearch.structure.FoundState
 import dev.jacaro.school.eightpuzzlesearch.structure.SolutionNotFound
@@ -19,7 +20,7 @@ fun printFoundState(algorithm: String, foundState: FoundState, duration: Duratio
     println("Time taken: $duration")
 }
 
-val algorithms = arrayOf(BreadthFirstSearch, DepthFirstSearch)
+val algorithms = arrayOf(BreadthFirstSearch, DepthFirstSearch, UniformCostSearch)
 
 @OptIn(ExperimentalTime::class)
 fun main() {
@@ -29,9 +30,9 @@ fun main() {
 
     startArray.shuffle()
 
-    val start = BoardState(startArray) // arrayOf(2, 8, 3, 1, 6, 4, 7, 0, 5)
+    //val start = BoardState(startArray) // arrayOf(2, 8, 3, 1, 6, 4, 7, 0, 5)
 
-    // val start = BoardState(arrayOf(4, 5, 6, 8, 3, 0, 7 ,2 ,1))
+    val start = BoardState(arrayOf(5, 8, 0, 3, 4, 1, 7, 6, 2))
 
     println("Start State: ${start.singleLinePrint()}")
 

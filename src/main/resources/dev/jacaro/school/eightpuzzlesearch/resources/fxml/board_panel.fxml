@@ -5,19 +5,17 @@
 <?import javafx.scene.layout.*?>
 <?import org.controlsfx.control.*?>
 
-<VBox alignment="CENTER" fillWidth="false" prefHeight="400.0" prefWidth="600.0" GridPane.halignment="LEFT" GridPane.hgrow="NEVER" GridPane.rowSpan="2" GridPane.vgrow="NEVER" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.jacaro.school.eightpuzzlesearch.gui.controllers.BoardPanel">
-    <SegmentedButton fx:id="boardStateButton">
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<VBox alignment="CENTER" fillWidth="false" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.jacaro.school.eightpuzzlesearch.gui.controllers.BoardPanelController">
+    <SegmentedButton fx:id="boardStateButton" disable="true">
         <buttons>
-            <ToggleButton fx:id="boardStartButton" text="Start" />
-            <ToggleButton fx:id="boardBFSStateButton" text="BFS" />
-            <ToggleButton fx:id="boardDFSStateButton" text="DFS" />
-            <ToggleButton fx:id="boardUFSStateButton" text="UFS" />
+            <ToggleButton fx:id="boardBFSStateButton" text="BFS" selected="true" onAction="#onBFSSelect"/>
+            <ToggleButton fx:id="boardDFSStateButton" text="DFS" onAction="#onDFSSelect"/>
+            <ToggleButton fx:id="boardUFSStateButton" text="UFS" onAction="#onUFSSelect"/>
         </buttons>
-        <opaqueInsets>
-            <Insets />
-        </opaqueInsets>
         <VBox.margin>
-            <Insets bottom="5.0" />
+            <Insets bottom="5"/>
         </VBox.margin>
     </SegmentedButton>
     <GridPane fx:id="boardGridPane" alignment="CENTER" gridLinesVisible="true" maxHeight="150.0" maxWidth="150.0" minHeight="150.0" minWidth="150.0" prefHeight="150.0" prefWidth="150.0" VBox.vgrow="NEVER">
@@ -32,26 +30,34 @@
             <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="ALWAYS" />
         </rowConstraints>
         <children>
-            <Label fx:id="label0" text="Label" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />\
-            <Label fx:id="label1" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Label fx:id="label3" text="Label" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Label fx:id="label4" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Label fx:id="label6" text="Label" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <Label fx:id="label7" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <Label fx:id="label2" text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Label fx:id="label5" text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Label fx:id="label8" text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Label fx:id="label0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Label fx:id="label1" text="" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Label fx:id="label3" text="" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Label fx:id="label4" text="" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Label fx:id="label6" text="" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Label fx:id="label7" text="" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Label fx:id="label2" text="" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Label fx:id="label5" text="" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Label fx:id="label8" text="" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
         </children>
     </GridPane>
     <HBox alignment="CENTER">
         <children>
-            <Button fx:id="boardBackButton" mnemonicParsing="false" text="Button" />
-            <Label fx:id="boardLabel" alignment="CENTER" contentDisplay="CENTER" text="Start" textAlignment="CENTER">
+            <Button fx:id="boardBackButton" mnemonicParsing="false" disable="true" onAction="#onBack">
+                <graphic>
+                    <ImageView pickOnBounds="true" preserveRatio="true" fitWidth="25" fx:id="leftImage"/>
+                </graphic>
+            </Button>
+            <Label fx:id="boardLabel" alignment="CENTER" contentDisplay="CENTER" textAlignment="CENTER" visible="false" prefWidth="70">
                 <padding>
                     <Insets left="5.0" right="5.0" />
                 </padding>
             </Label>
-            <Button fx:id="boardForwardButton" mnemonicParsing="false" text="Button" />
+            <Button fx:id="boardForwardButton" mnemonicParsing="false" disable="true" onAction="#onForward">
+                <graphic>
+                    <ImageView pickOnBounds="true" preserveRatio="true" fitWidth="25" fx:id="rightImage"/>
+                </graphic>
+            </Button>
         </children>
         <VBox.margin>
             <Insets top="5.0" />

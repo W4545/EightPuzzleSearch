@@ -21,23 +21,16 @@ object BreadthFirstSearch : Algorithm("Breadth First Search") {
         val visited = mutableSetOf(boardRoot.boardState)
         queue.addAll(boardRoot.children)
 
-        var lastDepth = queue.first().currentDepth
-        //print("Depth: $lastDepth ")
-        //println(queue.joinToString(separator = " | ") { it.boardState.singleLinePrint() })
+        var visitCount = 0
         while (queue.firstOrNull() != null) {
-            if (queue.first().currentDepth > lastDepth) {
-                lastDepth = queue.first().currentDepth
-                println("Depth: $lastDepth Visited: ${visited.size} QueueSize: ${queue.size}")
-                System.gc()
-                //println(queue.joinToString(separator = " | ") { it.boardState.singleLinePrint() })
-            }
+            visitCount += 1
 
             val beingVisited = queue.removeFirst()
 
 
 
             if (beingVisited.boardState.isSuccess)
-                return FoundState(boardRoot, beingVisited, MoveSeries(beingVisited), visited.size)
+                return FoundState(boardRoot, beingVisited, MoveSeries(beingVisited), visitCount)
 
 
             for (child in beingVisited.children) {

@@ -8,4 +8,8 @@ abstract class Algorithm(val name: String) {
 
     abstract fun search(start: BoardState) : FoundState
 
+
+    override fun toString(): String {
+        return name
+    }
 }

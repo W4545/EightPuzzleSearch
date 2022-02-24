@@ -16,7 +16,30 @@ object UniformCostSearch : Algorithm("Uniform Cost Search") {
         if (boardRoot.boardState.isSuccess)
             return FoundState(boardRoot, boardRoot, MoveSeries(boardRoot), 1)
 
-        val list = mutableListOf(boardRoot.children)
+        val list = sortedSetOf(*boardRoot.children)
+
+        val visited = hashSetOf<BoardState>()
+
+        var currentNode = list.first()
+        list.remove(currentNode)
+
+        var visitedCount = 0
+        while (!currentNode.boardState.isSuccess && list.size != 0) {
+            visitedCount += 1
+            for (child in currentNode.children) {
+                if (child.boardState !in visited) {
+                    visited.add(child.boardState)
+                    list.add(child)
+                }
+            }
+
+            currentNode = list.first()
+            list.remove(currentNode)
+        }
+
+        if (currentNode.boardState.isSuccess) {
+            return FoundState(boardRoot, currentNode, MoveSeries(currentNode), visitedCount)
+        }
 
         throw SolutionNotFound()
     }

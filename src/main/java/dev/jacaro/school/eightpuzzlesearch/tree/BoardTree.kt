@@ -14,7 +14,7 @@ fun genChildren(boardTree: BoardTree): Array<BoardTree> {
     }
 }
 
-open class BoardTree(val parent: BoardTree?, val boardState: BoardState, val currentDepth: Int) {
+open class BoardTree(val parent: BoardTree?, val boardState: BoardState, val currentDepth: Int) : Comparable<BoardTree> {
 
     val children: Array<BoardTree> by lazy {
         if (boardState.isSuccess)
@@ -27,17 +27,6 @@ open class BoardTree(val parent: BoardTree?, val boardState: BoardState, val cur
         return "BoardTree(boardState=$boardState, currentDepth=$currentDepth, children=${children.size})"
     }
 
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other !is BoardTree) return false
-
-        if (parent != other.parent) return false
-        if (boardState != other.boardState) return false
-        if (currentDepth != other.currentDepth) return false
-
-        return true
-    }
-
     private val parentHashCode: Int? by lazy {
         parent?.hashCode()
     }
@@ -47,5 +36,25 @@ open class BoardTree(val parent: BoardTree?, val boardState: BoardState, val cur
         result = 31 * result + boardState.hashCode()
         result = 31 * result + currentDepth
         return result
+    }
+
+    override fun compareTo(other: BoardTree): Int {
+        return if (this.currentDepth > other.currentDepth)
+            1
+        else if (this === other)
+            0
+        else
+            -1
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is BoardTree) return false
+
+        if (parent != other.parent) return false
+        if (boardState != other.boardState) return false
+        if (currentDepth != other.currentDepth) return false
+
+        return true
     }
 }
